@@ -1,3 +1,4 @@
+import logging
 import subprocess
 from NOLA2CSV import NOLATransformer, soda_to_hl2_csv
 
@@ -8,12 +9,16 @@ def main():
     url = u'http://data.nola.gov/resource/jsyu-nz5r.json'
     outpath = 'NolaCrimes2014.csv'
 
-    print('Downloading data to %s' % outpath)
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s %(message)s',
+                        datefmt='%Y-%m-%d %I:%M:%S %p')
+
+    logging.info('Downloading data to %s' % outpath)
     soda_to_hl2_csv(url, outpath, headers, NOLATransformer(url))
 
-    print('Uploading data to HunchLab.')
+    logging.info('Uploading data to HunchLab.')
     subprocess.call(['python', 'upload.py', outpath])
-    print('Upload complete.')
+    logging.info('Upload complete.')
 
 if __name__ == '__main__':
     main()

@@ -1,0 +1,5 @@
+pyasn1-modules
+ndg-httpsclient
+pyOpenSSL
+requests
+pytz

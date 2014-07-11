@@ -1,5 +1,6 @@
 import csv
 import datetime
+import logging
 from pytz import timezone
 import requests
 import time
@@ -86,7 +87,7 @@ def soda_to_hl2_csv(endpoint_root, outpath, headers, transformer):
         limit = 1000
         offset = 0
         while True:  # Break out if zero results.
-            print(offset)
+            logging.info('%s records processed.' % offset)
             req = requests.get(endpoint % (offset, limit))
             req.raise_for_status()
 
