@@ -1,0 +1,7 @@
+[Server]
+BaseURL: https://staging.hunchlab.com
+CertificateAuthority: certificates/geotrust-primary-g3.pem
+Token: YOURTOKEN
+
+[Data]
+SRID: 3452
