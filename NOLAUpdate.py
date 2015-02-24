@@ -6,8 +6,8 @@ from NOLA2CSV import NOLATransformer, soda_to_hl2_csv
 def main():
     headers = ["id", "datasource", "pointx", "pointy", "address", "datetimefrom",
                "datetimeto", "report_time", "class", "last_updated"]
-    url = u'http://data.nola.gov/resource/jsyu-nz5r.json'
-    outpath = 'NolaCrimes2014.csv'
+    url = u'https://data.nola.gov/resource/w68y-xmk6.json'
+    outpath = 'NolaCrimes2015.csv'
 
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s %(message)s',
