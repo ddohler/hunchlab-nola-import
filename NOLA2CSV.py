@@ -22,21 +22,8 @@ class NOLATransformer(object):
 
     def _convert_time(self, time_str):
         """Adds timezone info to event times and returns properly formatted string"""
-        # Dates don't have leading zeroes, so we need to extract them, pad, and
-        # reassemble.
-        parts = time_str.split(u'/')
-        month = parts[0].zfill(2)
-        day = parts[1].zfill(2)
-        rest = parts[2]
-        hhmmss = rest.split()[1]
-        if len(hhmmss) == 4:  # E.g. 2:36
-            hhmmss = hhmmss.zfill(5)
-
-        clean_str = month + u'/' + day + u'/' + rest.split()[0] + u' ' + hhmmss
-        try:
-            struct_time = time.strptime(clean_str, '%m/%d/%Y %H:%M:%S')
-        except ValueError:
-            struct_time = time.strptime(clean_str, '%m/%d/%Y %H:%M')
+        # As of 2016, the times are in ISO-8601 format
+        struct_time = time.strptime(time_str, '%Y-%m-%dT%H:%M:%S')
         central = timezone('US/Central')
         aware_time = central.localize(datetime.datetime(*struct_time[:6]))
 

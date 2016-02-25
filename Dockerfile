@@ -28,12 +28,14 @@ RUN make install
 WORKDIR /
 RUN rm -rf /tmp/openssl
 
-# Make project source available
-ADD . /projects/updater
-
 # Install Python dependencies
-WORKDIR /projects/updater
+COPY requirements.txt /tmp/requirements.txt
+WORKDIR /tmp
 RUN pip install -r requirements.txt
+
+# Make project source available
+ADD . /opt/updater
+WORKDIR /opt/updater
 
 # Execute updater
 CMD ["python", "NOLAUpdate.py"]
